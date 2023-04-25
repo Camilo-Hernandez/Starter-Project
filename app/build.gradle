@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.camihruiz24.starterproject'
+    namespace 'com.camihruiz24.starterproject' // No modificar en el proyecto destino
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.camihruiz24.starterproject"
+        applicationId "com.camihruiz24.starterproject" // No modificar en el proyecto destino
         minSdk 27
         targetSdk 33
         versionCode 1
