@@ -4,6 +4,7 @@ Plantilla para todo proyecto Android que fuera a crearse desde cero
 
 Pasos a seguir para adaptar el proyecto nuevo:
 1. Crear el proyecto desde la plantilla Empty Activity con Compose
+
 ![image](https://user-images.githubusercontent.com/36543483/234294026-e197a7a2-9250-4a44-8def-74d8d054aedd.png)
 
 2. Pegar el build.gradle a nivel de proyecto
