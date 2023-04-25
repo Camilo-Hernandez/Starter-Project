@@ -24,7 +24,7 @@ plugins {
 }
 ```
 
-3. Pegar los siguientes campos del build.gradel a nivel de app
+3. Pegar los siguientes campos del build.gradle a nivel de app
 ```groovy
 plugins {
     ... // Se agregan a lo que ya está
