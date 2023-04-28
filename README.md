@@ -20,6 +20,7 @@ plugins {
     id 'com.android.application' version '8.0.0' apply false
     id 'com.android.library' version '8.0.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
+    id "org.jetbrains.kotlin.plugin.serialization" version "1.8.10" apply false
     id 'com.google.dagger.hilt.android' version "$hilt_version" apply false
 }
 ```
@@ -30,6 +31,7 @@ plugins {
     ... // Se agregan a lo que ya está
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 // Se reemplaza todo
@@ -91,12 +93,6 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
-    // Retrofit
-    def retrofit_version = '2.9.0'
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
-
     // Dependencias para usar Room, una biblioteca que provee una capa de abstracción sobre SQLite para facilitar el acceso a datos persistentes
     def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
@@ -104,6 +100,22 @@ dependencies {
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$room_version"
 
+    // Retrofit (elegir entre Retrofit y Ktor para peticiones HTTP)
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+
+    // Dependencias para Ktor Client (elegir entre Retrofit y Ktor para peticiones HTTP)
+    def ktor_version = "2.3.0"
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-android:$ktor_version"
+    implementation "io.ktor:ktor-client-serialization:$ktor_version"
+    implementation "io.ktor:ktor-client-logging:$ktor_version"
+    implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "ch.qos.logback:logback-classic:1.2.11"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 }
 ```
 
