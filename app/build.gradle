@@ -50,22 +50,33 @@ android {
 }
 
 dependencies {
-
+    // Dependencias de AndroidX: son las dependencias que pertenecen a la biblioteca AndroidX y
+    // proporcionan funcionalidades para el desarrollo de aplicaciones Android. En tu caso, estas serían:
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.1'
+
+    // Dependencias de Compose: son las dependencias que pertenecen a
+    // la biblioteca Compose y proporcionan funcionalidades para el desarrollo de interfaces de
+    // usuario con Compose. En tu caso, estas serían:
     implementation platform('androidx.compose:compose-bom:2022.10.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
-    implementation 'androidx.compose.ui:ui-tooling-preview'
     implementation 'androidx.compose.material3:material3'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+
+    // Dependencias de prueba: son las dependencias necesarias para compilar y ejecutar las pruebas
+    // de tu aplicación. En tu caso, estas serían:
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    debugImplementation 'androidx.compose.ui:ui-tooling'
-    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // Dependencia del Splash Screen API
+    implementation "androidx.core:core-splashscreen:1.0.1"
 
     // Compose dependencies
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
