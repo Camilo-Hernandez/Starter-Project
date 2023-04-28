@@ -1,6 +1,6 @@
 # Starter Project
 
-Plantilla para todo proyecto Android que fuera a crearse desde cero
+Plantilla para todo proyecto Android que fuera a crearse desde cero. Todo proyecto inicial puede llegar a ser igual que este con los siguientes pasos.
 
 Pasos a seguir para adaptar el proyecto nuevo:
 1. Crear el proyecto desde la plantilla Empty Activity con Compose
