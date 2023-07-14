@@ -46,95 +46,103 @@ Pasos a seguir para adaptar el proyecto nuevo:
         kotlinCompilerExtensionVersion compose_version
     }
     
-    dependencies {
-    // Dependencias de AndroidX: son las dependencias que pertenecen a la biblioteca AndroidX y
-        // proporcionan funcionalidades para el desarrollo de aplicaciones Android. En tu caso, estas serían:
-        implementation 'androidx.core:core-ktx:1.10.1'
-        implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-        implementation 'androidx.activity:activity-compose:1.7.2'
     
-        // Dependencias de Compose: son las dependencias que pertenecen a
-        // la biblioteca Compose y proporcionan funcionalidades para el desarrollo de interfaces de
-        // usuario con Compose. En tu caso, estas serían:
-        implementation platform('androidx.compose:compose-bom:2023.05.01')
-        androidTestImplementation platform('androidx.compose:compose-bom:2023.05.01')
-        implementation 'androidx.compose.material3:material3'
-        implementation 'androidx.compose.ui:ui'
-        implementation 'androidx.compose.ui:ui-graphics'
-        implementation 'androidx.compose.ui:ui-tooling-preview'
-        implementation "androidx.compose.foundation:foundation"
-        debugImplementation 'androidx.compose.ui:ui-test-manifest'
-        debugImplementation 'androidx.compose.ui:ui-tooling'
+   dependencies {
+    // Core
+    // Proporciona funcionalidades para el desarrollo de aplicaciones Android con las ventajas que tiene Kotlin sobre Java
+    implementation 'androidx.core:core-ktx:1.10.1'
+
+    // Dependencias de prueba generales
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Activity for Compose
+    implementation 'androidx.activity:activity-compose:1.7.2'
+
+    // Compose Bom
+    def compose_bom = 'androidx.compose:compose-bom:2023.06.01'
+    implementation platform(compose_bom)
+    androidTestImplementation platform(compose_bom)
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation "androidx.compose.foundation:foundation"
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+
+    // Navigation Compose
+    implementation "androidx.navigation:navigation-compose:2.6.0"
+
+    // Lifecycle dependencies
+    def lifecycle_version = "2.6.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    // Splash Screen API
+    implementation "androidx.core:core-splashscreen:1.0.1"
+
+    // Dependencias para usar Hilt, una biblioteca que simplifica la inyección de dependencias en Android
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    // Androidx Hilt
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    // Instrumentation tests for Hilt
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
+    // Local unit tests for Hilt
+    testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Coil: Dependencia para cargar imágenes
+    implementation 'io.coil-kt:coil-compose:2.4.0'
+
+    // Coroutines, una biblioteca que permite escribir código asíncrono de forma secuencial y sin bloqueos
+    def coroutines_version = '1.7.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Room, una biblioteca que provee una capa de abstracción sobre SQLite para facilitar el acceso a datos persistentes
+    def room_version = '2.5.2'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // Retrofit (elegir entre Retrofit y Ktor para peticiones HTTP)
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    // OkHttp (estable)
+    //noinspection GradleDependency
+    implementation "com.squareup.okhttp3:okhttp:4.11.0"
     
-        // Dependencias de prueba: son las dependencias necesarias para compilar y ejecutar las pruebas
-        // de tu aplicación. En tu caso, estas serían:
-        testImplementation 'junit:junit:4.13.2'
-        androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-        androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-        androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
-    
-        // Dependencia del Splash Screen API
-        implementation "androidx.core:core-splashscreen:1.0.1"
-    
-        // Compose dependencies
-        implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
-        // Lifecycle
-        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
-    
-        // -- Dependencias para usar Hilt, una biblioteca que simplifica la inyección de dependencias en Android
-        // Dagger Hilt
-        implementation "com.google.dagger:hilt-android:$hilt_version"
-        kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-        // Androidx Hilt
-        implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
-        kapt "androidx.hilt:hilt-compiler:1.0.0"
-        // For instrumentation tests
-        androidTestImplementation  "com.google.dagger:hilt-android-testing:$hilt_version"
-        kaptAndroidTest "com.google.dagger:hilt-compiler:$hilt_version"
-        // For local unit tests
-        testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
-        kaptTest "com.google.dagger:hilt-compiler:$hilt_version"
-    
-        // Accompanist: Dependencia para cargar imágenes
-        implementation 'io.coil-kt:coil-compose:2.4.0'
-    
-        // Dependencias para usar Coroutines, una biblioteca que permite escribir código asíncrono de forma secuencial y sin bloqueos
-        def coroutines_version = '1.7.1'
-        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    
-        // Dependencias para usar Room, una biblioteca que provee una capa de abstracción sobre SQLite para facilitar el acceso a datos persistentes
-        def room_version = "2.5.1"
-        implementation "androidx.room:room-runtime:$room_version"
-        kapt "androidx.room:room-compiler:$room_version"
-        // Kotlin Extensions and Coroutines support for Room
-        implementation "androidx.room:room-ktx:$room_version"
-    
-        // Retrofit (elegir entre Retrofit y Ktor para peticiones HTTP)
-        def retrofit_version = '2.9.0'
-        implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-        implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
-        // --- Dependencias de conversores: elegir entre Gson y kotlinx.serialization
-        // Gson converter
-        implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-        // Kotlinx.serialization
-        implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
-        // Retrofit with Kotlin serialization Converter
-        implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
-    
-        // Dependencias para Ktor Client (elegir entre Retrofit y Ktor para peticiones HTTP)
-        def ktor_version = '2.3.1'
-        implementation "io.ktor:ktor-client-core:$ktor_version"
-        implementation "io.ktor:ktor-client-android:$ktor_version"
-        implementation "io.ktor:ktor-client-serialization:$ktor_version"
-        implementation "io.ktor:ktor-client-logging:$ktor_version"
-        implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
-        implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
-        implementation "ch.qos.logback:logback-classic:1.2.12" // Las versiones posteriores presentan un problema de path
-    }
+    // --- Serializadores: elegir entre Gson y kotlinx.serialization
+    // Gson converter
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    // Kotlinx.serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+    // Retrofit with Kotlin serialization Converter
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
+
+    // Ktor Client (elegir entre Retrofit y Ktor para peticiones HTTP)
+    def ktor_version = '2.3.2'
+    implementation "io.ktor:ktor-client-core:$ktor_version"
+    implementation "io.ktor:ktor-client-android:$ktor_version"
+    implementation "io.ktor:ktor-client-serialization:$ktor_version"
+    implementation "io.ktor:ktor-client-logging:$ktor_version"
+    implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "ch.qos.logback:logback-classic:1.2.12"
+   }
     ```
 
-4. Agregar el permiso de internet en el AndroidManifest.xml (Cuando se quiere acceder a una API remota)
+4. Agregar el permiso de internet en el AndroidManifest.xml
     ```xml
         <uses-permission android:name="android.permission.INTERNET"/>
     ```
