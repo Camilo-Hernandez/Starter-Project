@@ -27,8 +27,8 @@ Pasos a seguir para adaptar el proyecto nuevo:
     }
     ```
 3. Configurar la JVM a la versión más alta LTS disponible (versión 17 actualmente) teniendo cuidado
-que las rutas coincidan con la variable de entorno $JAVA_HOME. En MacOS la configuración se realiza
-presionando CMD + ;
+que las rutas coincidan con la variable de entorno $JAVA_HOME. En MacOS, el menú de configuración
+se abre presionando CMD + ;
 
    ![img.png](img.png)
 
