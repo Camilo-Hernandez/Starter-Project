@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.camihruiz24.starterproject" // No modificar en el proyecto destino
-        minSdk 27
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    // La versión de la JVM debe ser la misma configurada en la versión del Gradle JDK del paso anterior
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17

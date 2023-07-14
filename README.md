@@ -19,29 +19,31 @@ Pasos a seguir para adaptar el proyecto nuevo:
     }
     // Top-level build file where you can add configuration options common to all sub-projects/modules.
     plugins {
-        id 'com.android.application' version '8.0.2' apply false
-        id 'com.android.library' version '8.0.2' apply false
-        id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
-        id "org.jetbrains.kotlin.plugin.serialization" version "1.8.10" apply false
-        id 'com.google.dagger.hilt.android' version "$hilt_version" apply false
+         id 'com.android.application' version '8.0.2' apply false
+         id 'com.android.library' version '8.0.2' apply false
+         id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
+         id 'com.google.dagger.hilt.android' version "$hilt_version" apply false
+         id "org.jetbrains.kotlin.plugin.serialization" version "1.8.10" apply false // Si se usa kotlinx.serialization
     }
     ```
-3. Configurar la JVM a la versión más alta LTS disponible (versión 17 actualmente) teniendo cuidado
+
+3. Configurar la versión del Gradle JDK a la versión más alta de la JVM LTS disponible (versión 17 actualmente) teniendo cuidado
 que las rutas coincidan con la variable de entorno $JAVA_HOME. En MacOS, el menú de configuración
-se abre presionando CMD + ;
+se abre presionando CMD + ; o yendo al menú de preferencias/configuraciones.
 
    ![img.png](img.png)
 
 4. Pegar los siguientes campos del build.gradle a nivel de app
     ```groovy
     plugins {
-        ... // Se agregan a lo que ya está
+        id 'com.android.application'
+        id 'org.jetbrains.kotlin.android'
         id 'kotlin-kapt'
         id 'dagger.hilt.android.plugin'
-        id 'org.jetbrains.kotlin.plugin.serialization'
+        id 'org.jetbrains.kotlin.plugin.serialization' // Si se elige kotlinx.serialization para serialización
     }
     
-    // Se reemplaza todo
+    // La versión de la JVM debe ser la misma configurada en la versión del Gradle JDK del paso anterior 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -52,9 +54,7 @@ se abre presionando CMD + ;
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
-   ```
-
-   ```groovy
+   
     dependencies {
        // Core
        // Proporciona funcionalidades para el desarrollo de aplicaciones Android con las ventajas que tiene Kotlin sobre Java
